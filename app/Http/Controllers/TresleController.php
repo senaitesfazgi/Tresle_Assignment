@@ -14,7 +14,7 @@ class TresleController extends Controller
      */
     public function index()
     {
-        $tresle = Tresle::latest()->paginate(5);
+        $tresle = Tresle::latest()->pagination(5);
         return view('tresle.index',compact('tresle'))->with('i',(request()->input('page',1)-1)*5);
     }
 
@@ -36,7 +36,15 @@ class TresleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+  
+        Tresle::create($request->all());
+   
+        return redirect()->route('tresle.index')
+                        ->with('success','Tresle created successfully.');
     }
 
     /**
