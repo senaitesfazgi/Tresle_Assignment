@@ -14,7 +14,10 @@ class TresleTable extends Migration
     public function up()
     {
         Schema::create('tresle', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('businessName');
+            $table->string('businessPrice');
+            $table->string('businessCity');
             $table->timestamps();
         });
     }
