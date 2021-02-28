@@ -25,7 +25,7 @@ class TresleController extends Controller
      */
     public function create()
     {
-        //
+        return view('tresle.create');
     }
 
     /**
