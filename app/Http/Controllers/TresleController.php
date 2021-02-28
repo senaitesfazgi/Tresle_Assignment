@@ -37,8 +37,9 @@ class TresleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'businessName' => 'required',
+            'businessPrice' => 'required',
+            'businessCity' => 'required',
         ]);
   
         Tresle::create($request->all());
@@ -55,7 +56,7 @@ class TresleController extends Controller
      */
     public function show(Tresle $tresle)
     {
-        //
+        return view('tresle.show',compact('tresleBusiness'));
     }
 
     /**
@@ -66,7 +67,7 @@ class TresleController extends Controller
      */
     public function edit(Tresle $tresle)
     {
-        //
+        return view('tresle.edit',compact('tresleBusiness'));
     }
 
     /**
@@ -78,7 +79,16 @@ class TresleController extends Controller
      */
     public function update(Request $request, Tresle $tresle)
     {
-        //
+        $request->validate([
+            'businessName' => 'required',
+            'businessPrice' => 'required',
+            'businessCity' => 'required',
+        ]);
+  
+        $tresleBusiness->update($request->all());
+  
+        return redirect()->route('tresle.index')
+                        ->with('success','Business updated successfully');
     }
 
     /**
@@ -89,6 +99,9 @@ class TresleController extends Controller
      */
     public function destroy(Tresle $tresle)
     {
-        //
+        $tresleBusiness->delete();
+  
+        return redirect()->route('tresle.index')
+                        ->with('success','Business deleted successfully');
     }
 }
