@@ -15,7 +15,7 @@ class TresleController extends Controller
     public function index()
     {
         $tresle = Tresle::latest()->paginate(5);
-        return view('blogs.index',compact('blogs'))->with('i',(request()->input('page',1)-1)*5);
+        return view('tresle.index',compact('tresle'))->with('i',(request()->input('page',1)-1)*5);
     }
 
     /**
