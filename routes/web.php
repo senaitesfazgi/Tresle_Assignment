@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('tresle/create');
 });
-Route::resource('tresle','TresleController');
+Route::resource('tresle','App\Http\Controllers\TresleController');
